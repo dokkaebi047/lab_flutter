@@ -1,51 +1,44 @@
 import 'package:flutter/material.dart';
-import '../widgets/contact_list_item.dart';
-import 'contact_add_screen.dart';
+import '../models/contact.dart';
+import '../widgets/contact_card.dart';
 
-class ContactListScreen extends StatefulWidget {
+class ContactListScreen extends StatelessWidget {
   const ContactListScreen({super.key});
 
   @override
-  _ContactListScreenState createState() => _ContactListScreenState();
-}
-
-class _ContactListScreenState extends State<ContactListScreen> {
-  final List<Map<String, String>> _contacts = [
-    {'name': 'Руслан', 'surname': 'Иванов'},
-    {'name': 'Нурдин', 'surname': 'Сыдыков'},
-    {'name': 'Ким', 'surname': 'Хен'},
-  ];
-
-  void _addContact(Map<String, String> newContact) {
-    setState(() {
-      _contacts.add(newContact);
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
+    List<Contact> contacts = [
+      Contact(
+        firstName: 'Иван',
+        lastName: 'Иванов',
+        phone: '+7 900 123 45 67',
+        email: 'ivanov@example.com',
+        birthday:
+            DateTime(1990, DateTime.now().month, DateTime.now().day), // Сегодня
+      ),
+      Contact(
+        firstName: 'Нурдин',
+        lastName: 'Сыдыков',
+        phone: '+99688996688',
+        email: 'sdkvur@gmail.com.com',
+        birthday: DateTime(1985, 5, 10),
+      ),
+      Contact(
+        firstName: 'Ким',
+        lastName: 'Хен',
+        phone: '+996558211233',
+        email: 'hyngkim@gmail.com',
+        birthday: DateTime(1992, 3, 15),
+      ),
+    ];
+
     return Scaffold(
       appBar: AppBar(title: const Text('Контакты')),
       body: ListView.builder(
-        itemCount: _contacts.length,
+        itemCount: contacts.length,
         itemBuilder: (context, index) {
-          return ContactListItem(
-            name: _contacts[index]['name']!,
-            surname: _contacts[index]['surname'],
-          );
+          return ContactCard(contact: contacts[index]);
         },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final newContact = await Navigator.push<Map<String, String>?>(
-            context,
-            MaterialPageRoute(builder: (context) => const ContactAddScreen()),
-          );
-          if (newContact != null) {
-            _addContact(newContact);
-          }
-        },
-        child: const Icon(Icons.add),
       ),
     );
   }

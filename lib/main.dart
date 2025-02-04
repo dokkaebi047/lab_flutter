@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/contact_list_screen.dart';
+import 'screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Адресная книга',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const ContactListScreen(),
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const HomeScreen(),
     );
   }
 }
