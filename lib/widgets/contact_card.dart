@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/contact.dart';
+import '../screens/contact_details_screen.dart';
 
 class ContactCard extends StatelessWidget {
   final Contact contact;
@@ -17,7 +18,12 @@ class ContactCard extends StatelessWidget {
             ? Image.asset('assets/images/birthday.png', width: 30, height: 30)
             : null,
         onTap: () {
-          // Следующий этап: открытие деталей контакта
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ContactDetailsScreen(contact: contact),
+            ),
+          );
         },
       ),
     );

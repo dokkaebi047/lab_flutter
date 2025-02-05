@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lab/screens/add_contact_screen.dart';
 import '../models/contact.dart';
 import '../widgets/contact_card.dart';
 
@@ -39,6 +40,21 @@ class ContactListScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return ContactCard(contact: contacts[index]);
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddContactScreen(
+                onContactAdded: (newContact) {
+                  contacts.add(newContact);
+                },
+              ),
+            ),
+          );
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
