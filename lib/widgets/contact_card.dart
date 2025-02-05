@@ -12,10 +12,10 @@ class ContactCard extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: ListTile(
+        leading: CircleAvatar(child: Text(contact.firstName[0])),
         title: Text('${contact.firstName} ${contact.lastName}'),
-        subtitle: Text(contact.phone),
         trailing: contact.isBirthdayToday()
-            ? Image.asset('assets/images/birthday.png', width: 30, height: 30)
+            ? Image.asset('assets/images/birthday.png', width: 30)
             : null,
         onTap: () {
           Navigator.push(
